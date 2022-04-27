@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/fake-twitter/static/css/main.880e277a.css",
+    "main.js": "/fake-twitter/static/js/main.8aa99bb8.js",
+    "index.html": "/fake-twitter/index.html",
+    "main.880e277a.css.map": "/fake-twitter/static/css/main.880e277a.css.map",
+    "main.8aa99bb8.js.map": "/fake-twitter/static/js/main.8aa99bb8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.880e277a.css",
+    "static/js/main.8aa99bb8.js"
+  ]
+}

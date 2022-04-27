@@ -7,7 +7,7 @@ import Login from './login';
 
 function App() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename="/fake-twitter">
         <Routes>
             <Route path="/" index element={<Home />} />
             <Route path="/signup" element={<Signup />} />

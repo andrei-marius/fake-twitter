@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/fake-twitter/signup/static/css/main.880e277a.css",
-    "main.js": "/fake-twitter/signup/static/js/main.8aa99bb8.js",
+    "main.js": "/fake-twitter/signup/static/js/main.de5b0b87.js",
     "index.html": "/fake-twitter/signup/index.html",
     "main.880e277a.css.map": "/fake-twitter/signup/static/css/main.880e277a.css.map",
-    "main.8aa99bb8.js.map": "/fake-twitter/signup/static/js/main.8aa99bb8.js.map"
+    "main.de5b0b87.js.map": "/fake-twitter/signup/static/js/main.de5b0b87.js.map"
   },
   "entrypoints": [
     "static/css/main.880e277a.css",
-    "static/js/main.8aa99bb8.js"
+    "static/js/main.de5b0b87.js"
   ]
 }

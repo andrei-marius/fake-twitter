@@ -38,7 +38,7 @@ function Home() {
             )
             setTweets(data)
         })
-    }, [])
+    })
 
     function handleChange(e) {
         setTweet(e.target.value)
@@ -52,6 +52,10 @@ function Home() {
         }
         addDoc(tweetsCollection, data)
         setTweet('')
+    }
+
+    if (!localStorage.getItem('loggedIn')) {
+        return navigate('/login')
     }
 
     return (

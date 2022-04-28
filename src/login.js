@@ -22,6 +22,7 @@ function Login(){
 
     let [users, setUsers] = useState([])
     let [loggingUser, setLoggingUser] = useState({})
+    let [showError, setShowError] = useState(false)
 
     const navigate = useNavigate();
 
@@ -32,7 +33,11 @@ function Login(){
             )
             setUsers(data)
         })
-    }, [])
+
+        if (localStorage.getItem('loggedIn')) {
+            return navigate('/')
+        }
+    })
 
     const handleChange = ({ target: { name, value } }) => {
         setLoggingUser({
@@ -49,9 +54,12 @@ function Login(){
         })
 
         if (checkUsers.includes(true)) {
+            setShowError(false)
             localStorage.setItem('user', loggingUser.username)
             localStorage.setItem('loggedIn', true)
             navigate('/')
+        } else {
+            setShowError(true)
         }
     }
 
@@ -61,6 +69,9 @@ function Login(){
 
     return (
         <div className='form-container'>
+            {
+                showError ? <div className='error-msg'>Incorrect credentials</div> : null
+            }
             <form onSubmit={handleClickLogin}>
                 <input type='text' placeholder='Username' name='username' onChange={handleChange} />
                 <input type='password' placeholder='Password' name='password' onChange={handleChange} />

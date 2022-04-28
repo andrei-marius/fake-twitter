@@ -1,6 +1,6 @@
 import React from 'react';
 import "./App.css"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom';
@@ -20,9 +20,17 @@ function Signup(){
     const firestore = getFirestore(firebApp)
     const usersCollection = collection(firestore, 'users')
 
-    let [user, setUser] = useState({})
+    let [user, setUser] = useState({ email: 'initial', username: 'initial', password: 'initial' })
+    let [showError, setShowError] = useState(false)
+    let [errorMsg, setErrorMsg] = useState('')
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (localStorage.getItem('loggedIn')) {
+            return navigate('/')
+        }
+    })
 
     const handleChange = ({ target: { name, value } }) => {
         setUser({
@@ -34,15 +42,32 @@ function Signup(){
     function handleClickSignup(e) {
         e.preventDefault();
 
-        if (user.email.includes('cphbusiness.dk') 
-            && user.username.length >= 8
-            && user.password.length >= 8) 
-        {
-                addDoc(usersCollection, user)
-                setUser({})
-                e.target.reset()
-                navigate('/login')
+        if (!user.email.includes('cphbusiness.dk')) {
+            e.target.email.classList.add('error')
+            setErrorMsg('Email should contain cphbusiness.dk')
+            setShowError(true)
+            return
+        } else if (user.username.length < 8) {
+            e.target.username.classList.add('error')
+            setErrorMsg('Username should have at least 8 characters')
+            setShowError(true)
+            return
+        } else if (user.password.length < 8) {
+            e.target.password.classList.add('error')
+            setErrorMsg('Password should have at least 8 characters')
+            setShowError(true)
+            return
+        } else {
+            setShowError(false)
+            addDoc(usersCollection, user)
+            setUser({})
+            e.target.reset()
+            navigate('/login')
         }
+    }
+
+    function handleFocus(e) {
+        e.target.classList.remove('error')
     }
 
     function handleRedirect() {
@@ -51,10 +76,13 @@ function Signup(){
 
     return (
         <div className='form-container'>
+            {
+                showError ? <div className='error-msg'>{errorMsg}</div> : null
+            }
             <form onSubmit={handleClickSignup}>
-                <input type='email' placeholder='Email' name='email' onChange={handleChange} />
-                <input type='text' placeholder='Username' name='username' onChange={handleChange} />
-                <input type='password' placeholder='Password' name='password' onChange={handleChange} />
+                <input type='email' placeholder='Email' name='email' onChange={handleChange} onFocus={handleFocus} />
+                <input type='text' placeholder='Username' name='username' onChange={handleChange} onFocus={handleFocus} />
+                <input type='password' placeholder='Password' name='password' onChange={handleChange} onFocus={handleFocus} />
                 <button type='submit'>Sign up</button>
             </form>
             <div className='wrapper'>

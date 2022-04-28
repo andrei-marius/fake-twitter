@@ -35,14 +35,18 @@ function Signup(){
         e.preventDefault();
 
         if (user.email.includes('cphbusiness.dk') 
-            && user.username.length > 0
-            && user.password.length > 0) 
+            && user.username.length >= 8
+            && user.password.length >= 8) 
         {
                 addDoc(usersCollection, user)
                 setUser({})
                 e.target.reset()
                 navigate('/login')
         }
+    }
+
+    function handleRedirect() {
+        navigate('/login')
     }
 
     return (
@@ -54,7 +58,7 @@ function Signup(){
                 <button type='submit'>Sign up</button>
             </form>
             <div className='wrapper'>
-                <a href="/fake-twitter/login">Have an account already? Log in to Twitter</a>
+                <button onClick={handleRedirect}>Have an account already? Log in to Twitter</button>
             </div>
         </div>
     )

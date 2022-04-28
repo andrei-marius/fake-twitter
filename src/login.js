@@ -55,6 +55,10 @@ function Login(){
         }
     }
 
+    function handleRedirect() {
+        navigate('/signup')
+    }
+
     return (
         <div className='form-container'>
             <form onSubmit={handleClickLogin}>
@@ -63,7 +67,7 @@ function Login(){
                 <button type='submit'>Log in</button>
             </form>
             <div className='wrapper'>
-                <a href="/fake-twitter/signup">Don't have an account? Sign up for Twitter</a>
+                <button onClick={handleRedirect}>Don't have an account? Sign up for Twitter</button>
             </div>
         </div>
     )

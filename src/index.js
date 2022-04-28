@@ -9,9 +9,9 @@ function App() {
     return (
       <BrowserRouter basename="/fake-twitter">
         <Routes>
-            <Route path="/fake-twitter" index element={<Home />} />
-            <Route path="fake-twitter/signup" element={<Signup />} />
-            <Route path="/fake-twitter/login" element={<Login />} />
+            <Route path="/" index element={<Home />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     );

@@ -46,7 +46,7 @@ function Home() {
 
     function handleClickTweet() {
         const data = {
-            user: localStorage.user,
+            userEmail: localStorage.user,
             message: tweet,
             createdAt: new Date().getTime()
         }
@@ -69,8 +69,8 @@ function Home() {
         <div className='tweets'>
             {tweets.map(item => {
                 return <Tweet
-                    key={item.user}
-                    user={item.user}
+                    key={item.userEmail}
+                    user={item.userEmail}
                     message={item.message}
                 /> 
             })}

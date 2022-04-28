@@ -27,16 +27,16 @@ function Login(){
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (localStorage.getItem('loggedIn')) {
+            return navigate('/')
+        }
+
         onSnapshot(query(usersCollection), snapshot => {
             const data = snapshot.docs.map(doc => 
                 doc.data()
             )
             setUsers(data)
         })
-
-        if (localStorage.getItem('loggedIn')) {
-            return navigate('/')
-        }
     })
 
     const handleChange = ({ target: { name, value } }) => {
@@ -50,12 +50,12 @@ function Login(){
         e.preventDefault();
 
         const checkUsers = users.map((user, index) => {
-            return user.username === loggingUser.username && user.password === loggingUser.password
+            return user.email === loggingUser.email && user.password === loggingUser.password
         })
 
         if (checkUsers.includes(true)) {
             setShowError(false)
-            localStorage.setItem('user', loggingUser.username)
+            localStorage.setItem('user', loggingUser.email)
             localStorage.setItem('loggedIn', true)
             navigate('/')
         } else {
@@ -73,7 +73,7 @@ function Login(){
                 showError ? <div className='error-msg'>Incorrect credentials</div> : null
             }
             <form onSubmit={handleClickLogin}>
-                <input type='text' placeholder='Username' name='username' onChange={handleChange} />
+                <input type='email' placeholder='Email' name='email' onChange={handleChange} />
                 <input type='password' placeholder='Password' name='password' onChange={handleChange} />
                 <button type='submit'>Log in</button>
             </form>

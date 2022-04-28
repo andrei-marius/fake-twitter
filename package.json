@@ -1,7 +1,7 @@
 {
   "name": "fake-twitter",
   "version": "0.1.0",
-  "homepage": "https://andrei-marius.github.io/fake-twitter/signup",
+  "homepage": "https://andrei-marius.github.io/fake-twitter",
   "private": true,
   "dependencies": {
     "firebase": "^9.6.10",

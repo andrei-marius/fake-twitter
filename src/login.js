@@ -63,7 +63,7 @@ function Login(){
                 <button type='submit'>Log in</button>
             </form>
             <div className='wrapper'>
-                <a href="/signup">Don't have an account? Sign up for Twitter</a>
+                <a href="/fake-twitter/signup">Don't have an account? Sign up for Twitter</a>
             </div>
         </div>
     )

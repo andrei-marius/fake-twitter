@@ -54,7 +54,7 @@ function Signup(){
                 <button type='submit'>Sign up</button>
             </form>
             <div className='wrapper'>
-                <a href="/login">Have an account already? Log in to Twitter</a>
+                <a href="/fake-twitter/login">Have an account already? Log in to Twitter</a>
             </div>
         </div>
     )
